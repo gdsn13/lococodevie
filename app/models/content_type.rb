@@ -13,9 +13,9 @@ class ContentType
   field :order_direction, :default => 'asc'
   field :highlighted_field_name
   field :group_by_field_name
-  field :seasonable, :type => Boolean, :default => false
   field :api_enabled, :type => Boolean, :default => false
   field :api_accounts, :type => Array
+  field :associable, :type => Boolean, :default => false
 
   ## associations ##
   referenced_in :site
@@ -29,6 +29,7 @@ class ContentType
   ## named scopes ##
   scope :ordered, :order_by => :updated_at.desc
   scope :alpha, :order_by => [[:name, :asc]]
+  scope :associable, :where => { :associable => true}, :order_by => [[:name, :asc]]
 
   ## indexes ##
   index [[:site_id, Mongo::ASCENDING], [:slug, Mongo::ASCENDING], [:site_id, Mongo::ASCENDING]]
@@ -87,28 +88,7 @@ class ContentType
   
   
   def menu_content
-    if self.slug == "spectacles"
-      self.season_show
-    else
-      self.latest_updated_contents
-    end  
-  end
-  
-  def season_show
-    res = []
-    season_b = Site.find(site_id).season_back
-    
-    # highlighted_field_value must be a required field and not null
-    liste = self.contents.sort{|a,b| a.highlighted_field_value <=> b.highlighted_field_value}
-    
-    liste.each do |s|
-      p s.highlighted_field_value
-      if (s.season_id == season_b)
-        res << s
-      end
-    end
-    
-    res
+    self.latest_updated_contents
   end
 
   def ordered_contents(conditions = {})

@@ -36,9 +36,7 @@ Rails.application.routes.draw do
     end
 
     resources :assets
-    
-    resources :seasons
-    
+        
     resources :object_contents
     
     resources :jules

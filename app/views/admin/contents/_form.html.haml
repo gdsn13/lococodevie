@@ -10,5 +10,3 @@
   = f.input :seo_title
   = f.input :meta_keywords
   = f.input :meta_description
-  - if @content_type.seasonable
-    = f.input :season_id, :as => :select, :collection => get_seasons, :include_blank => false

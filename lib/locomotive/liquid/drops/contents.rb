@@ -18,6 +18,8 @@ module Locomotive
         end
 
         def first
+          p '44444444444444444444'
+          p 'first'
           self.collection.first
         end
 

@@ -8,7 +8,6 @@ module Extensions
         embeds_many :embeded_items
       
         accepts_nested_attributes_for :embeded_items, :allow_destroy => true
-        #attr_accessible :embeded_items_attributes
       end
       
       module InstanceMethods

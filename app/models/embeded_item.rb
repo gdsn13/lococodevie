@@ -14,6 +14,7 @@ class EmbededItem
   scope :jules, :where => { :type => 'jules'}, :order_by => [[:position, :asc]]
   scope :actus, :where => { :type => 'actus'}, :order_by => [[:position, :asc]]
   scope :boutons, :where => { :type => 'boutons'}, :order_by => [[:position, :asc]]
+  scope :for_content_type, lambda { |ct| where(:type => ct) }
   
   def self.get_jules( p_page )
     res = []
@@ -32,17 +33,9 @@ class EmbededItem
     res
   end
   
-  
-  
   def self.get_actus
     res = []
     actus.each { |j| res << Actu.find(j.item_id) }
-    res
-  end
-  
-  def self.get_boutons
-    res = []
-    boutons.each { |j| res << Bouton.find(j.item_id) }
     res
   end
   
@@ -52,16 +45,18 @@ class EmbededItem
     end
   end
   
-  def self.get_boutons_for_json
-    btn = get_boutons.map do |b| 
-      { :title => b.title, :son => b.son.url, :img => b.le_bouton.url, :url => b.url, :block => b.block }
-    end
-  end
-  
   def self.get_actus_for_json
     act = get_actus.map do |a| 
       { :name => a.title, :block => a.block, :picto => a.picto.url }
-    end
-    
+    end  
+  end
+  
+  def self.get_of_type( p_type )
+    ids = for_content_type(p_type).map{ |t| t.item_id}
+    ContentType.where(:slug => p_type).first.contents.find(ids)
+  end
+   
+  def to_liquid
+    Locomotive::Liquid::Drops::Embeded.new(self)
   end
 end

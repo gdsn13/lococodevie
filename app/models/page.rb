@@ -18,12 +18,8 @@ class Page
   field :slug
   field :fullpath
   field :raw_template
-  field :body
   field :published, :type => Boolean, :default => false
   field :cache_strategy, :default => 'none'
-  field :fat, :type => Boolean
-  
-  mount_uploader :bck_img, PageUploader
 
   ## associations ##
   referenced_in :site
@@ -50,7 +46,7 @@ class Page
   scope :not_found, :where => { :slug => '404', :depth => 0 }
   scope :published, :where => { :published => true }
   scope :fullpath, lambda { |fullpath| { :where => { :fullpath => fullpath } } }
-  scope :minimal_attributes, :only => %w(title slug fullpath position depth published templatized redirect listed parent_id created_at updated_at fat body)
+  scope :minimal_attributes, :only => %w(title slug fullpath position depth published templatized redirect listed parent_id created_at updated_at embeded_items)
 
   ## methods ##
 

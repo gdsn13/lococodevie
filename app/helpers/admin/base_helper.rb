@@ -58,8 +58,4 @@ module Admin::BaseHelper
     link_to 'noCoffee', 'http://www.nocoffee.fr', :id => 'nocoffee'
   end
 
-  def get_seasons
-    Season.all
-  end
-
 end

@@ -9,15 +9,15 @@ class Jule
   
   scope :latest_updated, :order_by => [[:updated_at, :desc]]
   
-  belongs_to :season
+  validates_presence_of :name
+  
   referenced_in :site
   
-  
-  def self.for_season p_season_id    
-    where(:season_id => p_season_id)
+  def self.for_menu
+    order_by([[:updated_at, :desc]]).limit(10)
   end
   
-  def self.for_menu p_season_id
-    where(:season_id => p_season_id).order_by([[:updated_at, :desc]]).limit(10)
+  def to_liquid
+    { :picto_url => self.picto.url }.merge(self.attributes).stringify_keys
   end
 end

@@ -12,22 +12,15 @@ module Locomotive
           render :template => '/admin/errors/404', :layout => '/admin/layouts/box', :status => :not_found
         else
           @page = locomotive_page
-          spectacles = []
 
-          ContentType.where(:slug => "spectacles").first.contents.each do |s|
-            if s.season_id == current_site.season_front
-              spectacles << s
-            end
-          end
-          
-          @spectacles = spectacles.sort_by { |a| a.numero }
+          redirect_to(@page.redirect_url) and return if @page.present? && @page.redirect?
 
-          #redirect_to(@page.redirect_url) and return if @page.present? && @page.redirect?
-
-          #render_no_page_error and return if @page.nil?
+          render_no_page_error and return if @page.nil?
               
-          render :template => '/front/layouts/layout.html', :layout => false
-          
+
+          output = @page.render(locomotive_context)
+
+          self.prepare_and_set_response(output)
         end
       end
 
@@ -71,6 +64,7 @@ module Locomotive
           'page'              => @page,
           'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new, # depracated, will be removed shortly
           'contents'          => Locomotive::Liquid::Drops::Contents.new,
+          'embededs'          => Locomotive::Liquid::Drops::Embeded.new,
           'current_page'      => self.params[:page],
           'params'            => self.params,
           'path'              => request.path,

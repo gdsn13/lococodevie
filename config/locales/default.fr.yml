@@ -48,7 +48,7 @@ fr:
           title: "Page non trouvée"
           body: "Contenu de la page d'erreur 404"
         other:
-          body: "{% extends 'parent' %}"
+          body: "{% extends 'parent' %}{% block content %}{% editable_long_text 'contenu', priority: 1%}{% endeditable_long_text %}{% endblock %}"
 
   mongoid:
     attributes:
