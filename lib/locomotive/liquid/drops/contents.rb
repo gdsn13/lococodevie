@@ -18,13 +18,19 @@ module Locomotive
         end
 
         def first
-          p '44444444444444444444'
-          p 'first'
           self.collection.first
         end
 
         def last
           self.collection.last
+        end
+        
+        def random	
+           self.collection.shuffle.first	
+        end
+
+        def random_list	
+           self.collection.shuffle
         end
 
         def each(&block)
