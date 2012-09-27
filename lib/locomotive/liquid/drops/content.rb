@@ -22,6 +22,14 @@ module Locomotive
           self._source.next.to_liquid
         end
         
+        def random_produit
+          produits = []
+          self._source.produits.shuffle.each do |p|
+            produits << p.to_liquid
+          end
+          produits
+        end
+        
         # Returns the previous content for the parent content type.
         # If no content is found, nil is returned.
         #
@@ -36,6 +44,7 @@ module Locomotive
         end
 
         def before_method(meth)
+          
           return '' if self._source.nil?
 
           if not @@forbidden_attributes.include?(meth.to_s)
@@ -46,7 +55,7 @@ module Locomotive
         def highlighted_field_value
           self._source.highlighted_field_value
         end
-
+        
       end
     end
   end

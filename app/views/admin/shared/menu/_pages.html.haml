@@ -8,23 +8,3 @@
         %li
           = link_to truncate(page.title, :length => 25), edit_admin_page_url(page)
           %span= time_ago_in_words(page.updated_at)
-
-= admin_content_menu_item 'actus', admin_actus_url do
-  .header
-    %p= link_to t('admin.actus.index.new'), new_admin_actu_url
-  .inner
-    %ul
-      - current_site.actus.for_menu().each do |act|
-        %li
-          = link_to truncate(act.title, :length => 25), edit_admin_actu_path(act)
-          %span= time_ago_in_words(act.updated_at)          
-          
-= admin_content_menu_item 'jules', admin_jules_url do
-  .header
-    %p= link_to t('admin.jules.index.new'), new_admin_jule_url
-  .inner
-    %ul
-      - current_site.jules.for_menu().each do |jul|
-        %li
-          = link_to truncate(jul.name, :length => 25), edit_admin_jule_path(jul)
-          %span= time_ago_in_words(jul.updated_at)

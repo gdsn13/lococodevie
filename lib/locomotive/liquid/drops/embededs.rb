@@ -17,7 +17,7 @@ module Locomotive
         end
         
         def before_method( p_type )         
-          p p_type
+
         end 
         
         def jules

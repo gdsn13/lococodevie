@@ -16,8 +16,6 @@
 = render 'editable_elements', :page => @page
 
 = f.foldable_inputs :name => :jules do
-  = render 'embededs', :f => f, :type => "jules", :class_last => ""
-  = render 'embededs', :f => f, :type => "actus", :class_last => ""
   - ContentType.associable.each do |ct| 
     = render 'embededs', :f => f, :type => ct.slug, :class_last => ""
 
