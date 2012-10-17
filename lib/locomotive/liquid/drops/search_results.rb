@@ -7,6 +7,10 @@ module Locomotive
           @context.registers[:search_result]
         end
         
+        def query
+          @context.registers[:query_string]
+        end
+        
       end
     end
   end

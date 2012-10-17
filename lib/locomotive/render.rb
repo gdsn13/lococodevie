@@ -92,7 +92,8 @@ module Locomotive
           :page           => @page,
           :inline_editor  => self.editing_page?,
           :current_admin  => current_admin, 
-          :search_result  => @search_result
+          :search_result  => @search_result,
+          :query_string   => @query_string
         }
 
         ::Liquid::Context.new({}, assigns, registers)

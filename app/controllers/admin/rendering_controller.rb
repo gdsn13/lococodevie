@@ -63,6 +63,7 @@ module Admin
       
       end
       @search_result = results
+      @query_string = query
       
       render_locomotive_page
     end
