@@ -16,6 +16,7 @@ class ContentType
   field :api_enabled, :type => Boolean, :default => false
   field :api_accounts, :type => Array
   field :associable, :type => Boolean, :default => false
+  field :searchable, :type => Boolean, :default => false
 
   ## associations ##
   referenced_in :site

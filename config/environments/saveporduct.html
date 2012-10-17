@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Elephange</title>
+    {{ 'styli.css' | stylesheet_tag }}
+    {{ 'base.css' | stylesheet_tag }}
+    
+    <!--[if IE]> <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    
+    <!--
+    __                                 
+    /\ \                   __           
+    ___    \_\ \     __   __  __ /\_\     __   
+    / __`\  /'_` \  /'__`\/\ \/\ \\/\ \  /'__`\
+    /\ \L\ \/\ \L\ \/\  __/\ \ \_/ |\ \ \/\  __/
+    \ \____/\ \___,_\ \____\\ \___/  \ \_\ \____\
+    \/___/  \/__,_ /\/____/ \/__/    \/_/\/____/
+    
+    odevie.org
+    Web distillery
+    
+    -->
+  </head>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+  
+  <body>
+    <header>
+      <section id="logo">{{ 'logo.png' | theme_image_tag }}</section>
+      <nav>
+        <div id="top_menu">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li id="menu_item_boutique">La Boutique</li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/contacts">Contacts</a></li>
+          </ul>
+        </div>
+        <div id="menu_inter_shadow"></div>
+        <div id="bottom_menu">
+          <ul>
+            {% for rub in contents.rubriques %}
+            <li><a href="/rubriques/{{rub._permalink}}" class="rub_title">{{rub.titre}}</a></li>
+            {% endfor %}
+            
+            <li><a href="javascript:void(0)" class="categorie">Catégories</a>
+              <ul id="categorie">
+                {% for cat in contents.tags%}
+                <li><a href="/categories/{{cat._permalink}}">{{cat.nom}}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+          
+        </div>
+      </nav>
+    </header>
+    <div id="container">
+      {% block main %}
+      <aside>
+        <h1>ambiances</h1>
+        <wrapper>
+          <ol>
+            {% for rub in contents.rubriques %}
+            <li>
+              <article>
+                <h2><a href="/rubriques/{{rub._slug}}"><img src="{{rub.deco.url}}" alt="{{rub.deco.titre}}"/></a></h2>
+                <figure><img src="{{rub.picto.url}}" alt=""/></figure>
+                <p>{{rub.description}}</p>
+              </article>
+            </li>
+            {% endfor %}   
+          </ol>
+        </wrapper>
+      </aside>
+      <section id="content">
+        <h1>la boutique</h1>
+        <ol>
+          {% for j in embededs.produits.get_embeded %}
+          <li class="box">
+            <article>
+              <h2><a href="/produits/{{j._permalink}}">{{j.titre}}</a></h2>
+              <figure>
+                
+                <a href="/produits/{{j._permalink}}"><img src="{{j.images.first.pic.url}}" width="310"/></a>
+                
+              </figure>
+              {{j.description}}
+            </article>
+          </li>
+          {%endfor%}
+        </ol>
+      </section>
+      <section id="blog_roll">
+        <h1>le blog</h1>
+        <ol>
+          {% for a in contents.articles %}
+          <li class="blog">
+            <article>
+              <h2>{{a.titre}}</h2>
+              <p>{{a.article | strip_html | truncatewords: 20}}</p>
+              <a href="/blog/{{a._permalink}}" title="lire la suite">Lire la suite...</a>
+            </article>
+          </li>
+          {% endfor %}          
+        </ol>
+      </section>
+      {% endblock %}
+    </div>
+    <footer>
+      <header></header>
+      <wrapper>
+        <section class="col1">
+          <h2>L'Ange et L'éléphant</h2>
+          {% editable_long_text 'disclaimer' %}
+          {% endeditable_long_text %}
+        </section>
+        <section class="col2">
+          <h2>Partagez</h2>
+          <p><div class="fb-like-box" data-href="http://www.facebook.com/pages/La-bastide-by-lange-et-l%C3%A9l%C3%A9phant/154566324582460?ref=ts&amp;fref=ts" data-width="270" data-colorscheme="dark" data-show-faces="true" data-stream="false" data-header="false"></div></p>
+        </section>
+        <section class="col3">
+          <h2>Contacts</h2>
+          <p>L’ange et L’éléphant<br/>
+            7 Bd Marceau<br/>
+            13210 Saint Rèmy<br/>
+            de Provence<br/>
+            <br/>  
+            04.32.62.88.74<br/>
+            <a href="mailto:labastide13@orange.fr">labastide13@orange.fr</a><br/>
+          </p>
+        </section>
+      </wrapper>
+      <footer>Copyright L’ange et l’éléphant 2012 © tous droits réservés - <a href="http://www.ho-com.com">réalisation ho-com</a></footer>
+    </footer>
+    {{ 'jquery-1.7.2.min.js' | javascript_tag }}
+    {{ 'jquery.imagesloaded.min.js' | javascript_tag }}
+    {{ 'jquery.isotope.min.js' | javascript_tag }}
+    {{ 'scripts.js' | javascript_tag }}
+    {{ 'galleria-1.2.8.min.js' | javascript_tag }}
+    <script language="javascript">
+      Galleria.loadTheme('/theme/javascripts/galleria.classic.min.js');
+      
+      if($('#diapo').attr('id') == "diapo"){
+      Galleria.run('#diapo');
+      Galleria.configure({
+      lightbox: true
+      });
+      }
+      
+    </script>
+    
+  </body>
+</html>

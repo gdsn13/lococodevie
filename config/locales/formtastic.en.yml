@@ -96,4 +96,5 @@ en:
         item_template: "You can customize the text displayed for each item in the list. Simply use Liquid. Ex: {{ content.name }})"
         api_enabled: "It is used to let people from outside to create new instances (example: messages in a contact form)"
         api_accounts: "A notification email will be sent to each of the accounts listed above when a new instance is created"
-
+        searchable: "Search engine will include this content type in his work"
+        associable: "Possible to associate contents to specifics pages"

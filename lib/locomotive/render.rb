@@ -16,7 +16,6 @@ module Locomotive
           redirect_to(@page.redirect_url) and return if @page.present? && @page.redirect?
 
           render_no_page_error and return if @page.nil?
-              
 
           output = @page.render(locomotive_context)
 
@@ -65,6 +64,7 @@ module Locomotive
           'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new, # depracated, will be removed shortly
           'contents'          => Locomotive::Liquid::Drops::Contents.new,
           'embededs'          => Locomotive::Liquid::Drops::Embeded.new,
+          'search_object'     => Locomotive::Liquid::Drops::SearchResult.new,
           'current_page'      => self.params[:page],
           'params'            => self.params,
           'path'              => request.path,
@@ -81,13 +81,18 @@ module Locomotive
           assigns['content_instance'] = @content_instance
           assigns[@page.content_type.slug.singularize] = @content_instance # just here to help to write readable liquid code
         end
+                
+        if @page.slug == "search"
+          assigns['search_result'] = @search_result
+        end
 
         registers = {
           :controller     => self,
           :site           => current_site,
           :page           => @page,
           :inline_editor  => self.editing_page?,
-          :current_admin  => current_admin
+          :current_admin  => current_admin, 
+          :search_result  => @search_result
         }
 
         ::Liquid::Context.new({}, assigns, registers)

@@ -26,7 +26,8 @@
     = f.input :api_accounts, :as => :select, :collection => current_site.accounts.collect { |a| ["#{a.name} <#{a.email}>", a.id] }, :include_blank => false, :multiple => true, :wrapper_html => { :class => 'multiple', :style => (f.object.api_enabled? ? '' : 'display: none') }
     = f.custom_input :associable, :css => 'toggle' do
       = f.check_box :associable
-
+    = f.custom_input :searchable, :css => 'toggle' do
+      = f.check_box :searchable
 
 
 

@@ -102,3 +102,5 @@ fr:
         item_template: "Personnaliser le texte affiché pour chaque élément de la liste. Utilisez simplement du code Liquid. Ex: {{ content.name }}"
         api_enabled: "Utilisé pour autoriser la création de nouvelles instances de l'extérieur (ex.: les messages dans un formulaire de contact)"
         api_accounts: "Un email de notification sera envoyé à chaque compte listé ci-dessus lors de la création d'une nouvelle instance"
+        associable: "Possibilité d'associer certains item à des pages"
+        searchable: "Le moteur de recherche incluera ce type de contenu dans son travail"

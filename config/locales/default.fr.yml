@@ -73,7 +73,8 @@ fr:
         highlighted_field_name: Champ mis en avant
         group_by_field_name: Champ pour grouper
         api_enabled: Activation API
-        seasonable: Dépendant d'une saison
+        associable: Associable
+        searchable: Recherchable
       asset:
         source: Fichier
       account:

@@ -68,13 +68,6 @@ Rails.application.routes.draw do
     match '/installation/:step' => 'installation#show', :as => :installation_step
 
   end
-  
-  match '/newsletter/:id' => "front/datas#newsletter"
-  match '/spectacles/:id' => "front/datas#spectacle_list"
-  match '/spectacle/:slug' => "front/datas#get_spectacle"
-  match '/pages/*fullpath' => "front/datas#get_page"
-  match '/intro' => "front/datas#get_intro"
-  match '/calendrier' => "front/datas#get_dates"
 
   # sitemap
   match '/sitemap.xml' => 'admin/sitemaps#show', :format => 'xml'
@@ -84,6 +77,7 @@ Rails.application.routes.draw do
 
   # magic urls
   match '/' => 'admin/rendering#show'
+  match '/search' => 'admin/rendering#search'
   match '*path/edit' => 'admin/rendering#edit'
   match '*path' => 'admin/rendering#show'
 end
