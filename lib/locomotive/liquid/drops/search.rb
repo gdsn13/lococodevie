@@ -12,8 +12,8 @@ module Locomotive
         def other_produit
           produits = []
           content = ContentType.where(:slug => "produits").first.contents.where(:_slug => self._source.permalink).first
-          
-          if content.categories != null
+                    
+          if content.categories != nil
             content.categories.produits.shuffle.each do |pr|
               produits << pr.to_liquid
             end
