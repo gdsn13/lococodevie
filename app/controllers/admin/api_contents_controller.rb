@@ -14,13 +14,6 @@ module Admin
     def create
       @content = @content_type.contents.build(params[:content])
       
-      p '55555555555555'
-      p params[:content]
-      p params[:content][:specific]
-      p params[:content][:fixed]
-      p params[:content].size
-      p @content_type.content_custom_fields.size + 2
-      
       #anti-spam filter, specific is hidden, so only robbots can fill it, and check if there is more fields sent!
       if params[:content][:specific] == "" && 
          params[:content].size == @content_type.content_custom_fields.size + 2 && 
