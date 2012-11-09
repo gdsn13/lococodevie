@@ -18,8 +18,8 @@ module Locomotive
             if sr.type == "produits"
               content = ContentType.where(:slug => "produits").first.contents.where(:_slug => sr.permalink).first
                     
-              if content != nil && content.categories != nil
-                content.categories.produits.shuffle.each do |pr|
+              if content != nil && content.ambiances != nil
+                content.ambiances.produits.shuffle.each do |pr|
                   produits << pr.to_liquid
                 end
               end
