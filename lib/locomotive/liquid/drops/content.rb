@@ -42,6 +42,45 @@ module Locomotive
         def previous
           self._source.previous.to_liquid
         end
+        
+        def get_products_for_rubrique
+          produits = []
+          products = ContentType.where(:slug => "produits").first
+          products.ordered_contents.each do |pdt|
+            pdt.rubriques.each do |pdt_rub|
+              if pdt_rub._slug == self._source._slug
+                produits << pdt.to_liquid
+              end
+            end
+          end
+          produits
+        end
+        
+        def get_products_for_categorie
+          produits = []
+          products = ContentType.where(:slug => "produits").first
+          products.ordered_contents.each do |pdt|
+            pdt.categories.each do |pdt_rub|
+              if pdt_rub._slug == self._source._slug
+                produits << pdt.to_liquid
+              end
+            end
+          end
+          produits
+        end
+        
+        def random_produit_for_categorie
+          produits = []
+          products = ContentType.where(:slug => "produits").first
+          products.ordered_contents.each do |pdt|
+            pdt.categories.each do |pdt_rub|
+              if pdt_rub._slug == self._source._slug
+                produits << pdt.to_liquid
+              end
+            end
+          end
+          produits.shuffle
+        end
 
         def before_method(meth)
           
@@ -54,6 +93,10 @@ module Locomotive
 
         def highlighted_field_value
           self._source.highlighted_field_value
+        end
+        
+        def galerie_thumb
+          self._source.pic.thumbz.url
         end
         
       end
