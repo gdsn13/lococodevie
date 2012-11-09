@@ -43,11 +43,11 @@ module Locomotive
           self._source.previous.to_liquid
         end
         
-        def get_products_for_rubrique
+        def get_products_for_ambiance
           produits = []
           products = ContentType.where(:slug => "produits").first
           products.ordered_contents.each do |pdt|
-            pdt.rubriques.each do |pdt_rub|
+            pdt.ambiances.each do |pdt_rub|
               if pdt_rub._slug == self._source._slug
                 produits << pdt.to_liquid
               end
@@ -56,11 +56,11 @@ module Locomotive
           produits
         end
         
-        def get_products_for_ambiance
+        def get_products_for_categorie
           produits = []
           products = ContentType.where(:slug => "produits").first
           products.ordered_contents.each do |pdt|
-            pdt.ambiances.each do |pdt_rub|
+            pdt.categories.each do |pdt_rub|
               if pdt_rub._slug == self._source._slug
                 produits << pdt.to_liquid
               end
