@@ -16,18 +16,22 @@ module Locomotive
           
           @context.registers[:search_result].each do |sr|
             if sr.type == "produits"
-              content = ContentType.where(:slug => "produits").first.contents.where(:_slug => sr.permalink).first
+              products = ContentType.where(:slug => "produits").first.contents
+              content = products.where(:_slug => sr.permalink).first
+              amb = content.ambiances.first
                     
               if content != nil && content.ambiances != nil
-                content.ambiances.produits.shuffle.each do |pr|
-                  produits << pr.to_liquid
+                products.each do |pdt|
+                  if pdt.ambiances.include?(amb)
+                    produits << pdt.to_liquid
+                  end
                 end
               end
               break
             end
           end
           
-          produits
+          produits.shuffle
         end
         
       end
