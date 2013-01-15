@@ -40,6 +40,8 @@
     = f.custom_input :listed, :css => 'toggle' do
       = f.check_box :listed
 
+    = f.input :menu_subtitle
+
     = f.custom_input :redirect, :css => 'toggle', :style => "#{'display: none' if @page.templatized?}" do
       = f.check_box :redirect
 
