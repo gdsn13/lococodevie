@@ -102,7 +102,7 @@ module Locomotive
           next_label = options[:next_label] || I18n.t('pagination.next')
 
           previous_link = (if paginate['previous'].blank?
-            "<li class=\"prev\">&larr; #{previous_label}</li>"
+            "<li class=\"prev\">#{previous_label}</li>"
           else
             "<li class=\"prev link \"><a href=\"#{absolute_url(paginate['previous']['url'])}\">#{previous_label}</a></li>"
           end)
@@ -121,10 +121,10 @@ module Locomotive
           next_link = (if paginate['next'].blank?
             "<li class=\"next\">#{next_label}</li>"
           else
-            "<li class=\"next link\"><a href=\"#{absolute_url(paginate['next']['url'])}\">#{next_label} &larr;</a></li>"
+            "<li class=\"next link\"><a href=\"#{absolute_url(paginate['next']['url'])}\">#{next_label}</a></li>"
           end)
 
-          %{<ul class="pagination #{options[:css]}">
+          %{<ul class="pagination none #{options[:css]}">
               #{previous_link}
               #{links}
               #{next_link}
