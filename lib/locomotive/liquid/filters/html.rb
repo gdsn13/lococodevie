@@ -104,7 +104,7 @@ module Locomotive
           previous_link = (if paginate['previous'].blank?
             "<li class=\"prev\">&larr; #{previous_label}</li>"
           else
-            "<li class=\"prev\ link"><a href=\"#{absolute_url(paginate['previous']['url'])}\">#{previous_label}</a></li>"
+            "<li class=\"prev link \"><a href=\"#{absolute_url(paginate['previous']['url'])}\">#{previous_label}</a></li>"
           end)
 
           links = ""
@@ -121,7 +121,7 @@ module Locomotive
           next_link = (if paginate['next'].blank?
             "<li class=\"next\">#{next_label}</li>"
           else
-            "<li class=\"next\ link"><a href=\"#{absolute_url(paginate['next']['url'])}\">#{next_label} &larr;</a></li>"
+            "<li class=\"next link\"><a href=\"#{absolute_url(paginate['next']['url'])}\">#{next_label} &larr;</a></li>"
           end)
 
           %{<ul class="pagination #{options[:css]}">
