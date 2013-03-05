@@ -8,7 +8,9 @@ module Locomotive
         end
         
         def html_for_json(input)
-          input.to_json.html_safe
+          result = input.to_s.gsub('/', '\/')
+          input.html_safe? ? r = result.html_safe : r = result
+          r.to_json.html_safe
         end
 
       end
