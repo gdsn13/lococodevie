@@ -6,6 +6,10 @@ module Locomotive
         def textile(input)
           ::RedCloth.new(input).to_html
         end
+        
+        def html_for_json(input)
+          input.to_json.html_safe
+        end
 
       end
 
