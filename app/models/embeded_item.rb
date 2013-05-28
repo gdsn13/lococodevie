@@ -52,9 +52,17 @@ class EmbededItem
   end
   
   def self.get_of_type( p_type )
-    ids = for_content_type(p_type).map{ |t| t.item_id} 
-    items = ContentType.where(:slug => p_type).first.contents.find(ids)
-    items_sorted = items.sort_by {|a| a["_position_in_list"]}
+    #ids = for_content_type(p_type).map{ |t| t.item_id} 
+    #items = ContentType.where(:slug => p_type).first.contents.find(ids)
+    #items_sorted = items.sort_by {|a| a["_position_in_list"]}
+    liste_item_ordered = []
+  
+    for_content_type(p_type).sort_by {|a| a["position"]}.each do |ei|      
+      liste_item_ordered << ContentType.where(:slug => p_type).first.contents.find(ei.item_id)
+    end
+    
+    liste_item_ordered
+    
   end
    
   def to_liquid
