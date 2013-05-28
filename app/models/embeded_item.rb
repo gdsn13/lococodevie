@@ -53,7 +53,7 @@ class EmbededItem
   
   def self.get_of_type( p_type )
     ids = for_content_type(p_type).map{ |t| t.item_id}
-    ContentType.where(:slug => p_type).first.contents.find(ids)
+    ContentType.where(:slug => p_type).first.contents.find(ids).sort_by{|e| e[:position]}
   end
    
   def to_liquid
