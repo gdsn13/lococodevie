@@ -46,6 +46,7 @@ var addCodeMirrorEditor = function(type, el, parser) {
 
 var TinyMceDefaultSettings = {
   script_url : '/javascripts/admin/plugins/tiny_mce/tiny_mce.js',
+	entity_encoding: "raw",
   theme : 'advanced',
   skin : 'locomotive',
   plugins: 'safari,inlinepopups,locomedia,fullscreen',
@@ -64,6 +65,7 @@ var TinyMceDefaultSettings = {
   fullscreen_settings : {
     theme_advanced_path_location : "top"
   },
+	
   /*
   *
   * These are call backs aide in the guider creation
