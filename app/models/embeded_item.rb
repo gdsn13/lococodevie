@@ -52,14 +52,11 @@ class EmbededItem
   end
   
   def self.get_of_type( p_type )
-    ids = for_content_type(p_type).map{ |t| t.item_id}
-    p '44444444'
-    p '44444444'
-    p '44444444'
-    p '44444444'
-    p ContentType.where(:slug => p_type).first.contents.find(ids)
-    p ContentType.where(:slug => p_type).first.contents.find(ids).sort{|a,b| a.position <=> b.position}
-    ContentType.where(:slug => p_type).first.contents.find(ids).sort{|a,b| a.position <=> b.position}
+    ids = for_content_type(p_type).map{ |t| t.item_id} 
+    items = ContentType.where(:slug => p_type).first.contents.find(ids)
+    items.sort! {|a,b| a.position <=> b.position}
+    #p ContentType.where(:slug => p_type).first.contents.find(ids).sort{|a,b| a.position <=> b.position}
+    #ContentType.where(:slug => p_type).first.contents.find(ids).sort{|a,b| a.position <=> b.position}
     #items.sort_by{|e| e[:position]}
   end
    
