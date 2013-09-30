@@ -71,7 +71,8 @@ module Locomotive
 
         # Returns a list element, a link to the page and its children
         def render_entry_link(page, css, depth)
-          selected = @current_page.fullpath =~ /^#{page.fullpath}/ ? ' current' : ''
+          
+          selected = @current_page.slug =~ /^#{page.slug}/ ? ' current' : ''
 
           icon = @options[:icon] ? '<span></span>' : ''
           label = %{#{icon if @options[:icon] != 'after' }#{page.title}#{icon if @options[:icon] == 'after' }}
