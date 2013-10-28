@@ -1,6 +1,6 @@
 class SearchObject
   
-  attr_accessor :title, :type, :permalink
+  attr_accessor :title, :type, :permalink, :image
   
   
   
