@@ -14,9 +14,9 @@ module Admin
     end
     
     def search  
-      query = params[:search_query][:query]
+      query = 'cakes' #params[:search_query][:query]
       results = []
-      
+
       if query != "" and query != nil
         query.downcase!
         spectacles_result = []
@@ -32,6 +32,7 @@ module Admin
             {"#{fld._name}" => /#{query}/i} 
           end
         
+         
           # on lance la requette sur le type courant
           ser_con.contents.where('$or' => search_pattern).each do |p|
             so = SearchObject.new()
@@ -39,8 +40,12 @@ module Admin
             so.title = p.highlighted_field_value
             so.permalink = p._permalink
             if ser_con.slug == 'produits'
-              so.image = p.images.first.pic.url
+              so.img = p.images.first.pic.url
             end
+            if ser_con.slug == 'articles'
+              so.article = p.article
+            end
+
             results << so
           end
         end
@@ -66,6 +71,7 @@ module Admin
       
       end
       @search_result = results
+
       @query_string = query
       
       render_locomotive_page

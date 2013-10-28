@@ -3,7 +3,7 @@ module Locomotive
     module Drops
       class Search < Base
         
-        delegate :title, :type, :permalink, :to => '_source'
+        delegate :title, :type, :img, :article, :permalink, :to => '_source'
 
         def title
           self._source.title
