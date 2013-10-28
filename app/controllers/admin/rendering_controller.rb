@@ -14,7 +14,7 @@ module Admin
     end
     
     def search  
-      query = 'cakes' #params[:search_query][:query]
+      query = params[:search_query][:query]
       results = []
 
       if query != "" and query != nil
