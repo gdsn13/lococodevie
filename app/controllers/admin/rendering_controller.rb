@@ -38,7 +38,9 @@ module Admin
             so.type = ser_con.slug
             so.title = p.highlighted_field_value
             so.permalink = p._permalink
-            so.image = p.images.first.pic.url
+            if ser_con.slug == 'produits'
+              so.image = p.images.first.pic.url
+            end
             results << so
           end
         end
