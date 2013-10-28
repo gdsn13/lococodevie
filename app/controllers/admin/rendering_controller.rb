@@ -38,27 +38,28 @@ module Admin
             so.type = ser_con.slug
             so.title = p.highlighted_field_value
             so.permalink = p._permalink
+            so.image = p.images.first.pic.url
             results << so
           end
         end
         
         #on cherche dans les pages
-        pages = Page.where('$or' => [{:titre => /#{query}/i}, {:body => /#{query}/i}]).map do |pgs|
-          pg = SearchObject.new()
-          pg.type = "pages"
-          pg.title = pgs.title
-          pg.permalink = pgs._permalink
-          results << pg
-        end
-        editable = Page.all.each do |p|
-          p.editable_elements.where('$or' => [{:content => /#{query}/i}]).map do |edtb|
-            ed = SearchObject.new()
-            ed.type = "pages"
-            ed.title = edtb.title
-            ed.permalink = edtb._permalink
-            results << ed
-          end
-        end
+        # pages = Page.where('$or' => [{:titre => /#{query}/i}, {:body => /#{query}/i}]).map do |pgs|
+        #   pg = SearchObject.new()
+        #   pg.type = "pages"
+        #   pg.title = pgs.title
+        #   pg.permalink = pgs._permalink
+        #   results << pg
+        # end
+        # editable = Page.all.each do |p|
+        #   p.editable_elements.where('$or' => [{:content => /#{query}/i}]).map do |edtb|
+        #     ed = SearchObject.new()
+        #     ed.type = "pages"
+        #     ed.title = edtb.title
+        #     ed.permalink = edtb._permalink
+        #     results << ed
+        #   end
+        # end
 
       
       end
