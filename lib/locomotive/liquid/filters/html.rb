@@ -101,28 +101,52 @@ module Locomotive
           previous_label = options[:previous_label] || I18n.t('pagination.previous')
           next_label = options[:next_label] || I18n.t('pagination.next')
 
+
           previous_link = (if paginate['previous'].blank?
-            "<li class=\"prev\">#{previous_label}</li>"
+            "<a href='#' class='prev page-numbers'>#{previous_label}</a>"
           else
-            "<li class=\"prev link \"><a href=\"#{absolute_url(paginate['previous']['url'])}\">#{previous_label}</a></li>"
+            "<a href='#{absolute_url(paginate['previous']['url'])}' class='prev page-numbers'>#{previous_label}</a>"
           end)
 
           links = ""
           paginate['parts'].each do |part|
-            links << (if part['is_link']
-              "<li class='link'><a href=\"#{absolute_url(part['url'])}\">#{part['title']}</a></li>"
+            links << (if part['is_link']            
+              '<a href="#{absolute_url(part['url'])}" class="page-numbers">#{part['title']}</a>'
             elsif part['hellip_break']
-              "<span class=\"gap\">#{part['title']}</span>"
+              '<span class="page-numbers current">#{part['title']}</span>'
             else
-              "<li class=\"current\">#{part['title']}</li>"
+              '<span class="page-numbers current">#{part['title']}</span>'
             end)
           end
 
           next_link = (if paginate['next'].blank?
-            "<li class=\"next\">#{next_label}</li>"
+            "<a href='#' class='next page-numbers'>#{next_label}</a>"
           else
-            "<li class=\"next link\"><a href=\"#{absolute_url(paginate['next']['url'])}\">#{next_label}</a></li>"
+            "<a href='#{absolute_url(paginate['next']['url'])}' class='next page-numbers'>#{next_label}</a>"
           end)
+          
+          #previous_link = (if paginate['previous'].blank?
+          #  "<li class=\"prev\">#{previous_label}</li>"
+          #else
+          #  "<li class=\"prev link \"><a href=\"#{absolute_url(paginate['previous']['url'])}\">#{previous_label}</a></li>"
+          #end)
+
+          #links = ""
+          #paginate['parts'].each do |part|
+          #  links << (if part['is_link']
+          #    "<li class='link'><a href=\"#{absolute_url(part['url'])}\">#{part['title']}</a></li>"
+          #  elsif part['hellip_break']
+          #    "<span class=\"gap\">#{part['title']}</span>"
+          #  else
+          #    "<li class=\"current\">#{part['title']}</li>"
+          #  end)
+          #end
+
+          #next_link = (if paginate['next'].blank?
+          #  "<li class=\"next\">#{next_label}</li>"
+          #else
+          #  "<li class=\"next link\"><a href=\"#{absolute_url(paginate['next']['url'])}\">#{next_label}</a></li>"
+          #end)
 
           %{<ul class="pagination none #{options[:css]}">
               #{previous_link}
