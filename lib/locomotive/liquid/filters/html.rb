@@ -113,7 +113,7 @@ module Locomotive
             links << (if part['is_link']            
               "<a href='#{absolute_url(part['url'])}' class='page-numbers'>#{part['title']}</a>"
             elsif part['hellip_break']
-              "<span class='page-numbers current'>#{part['title']}</span>"
+              "<span class='page-numbers'>#{part['title']}</span>"
             else
               "<span class='page-numbers current'>#{part['title']}</span>"
             end)
@@ -148,11 +148,11 @@ module Locomotive
           #  "<li class=\"next link\"><a href=\"#{absolute_url(paginate['next']['url'])}\">#{next_label}</a></li>"
           #end)
 
-          %{<ul class="pagination none #{options[:css]}">
+          %{
               #{previous_link}
               #{links}
               #{next_link}
-            </ul>}
+          }
         end
 
         protected
