@@ -111,11 +111,11 @@ module Locomotive
           links = ""
           paginate['parts'].each do |part|
             links << (if part['is_link']            
-              "<a href='#{absolute_url(part['url'])}' class='page-numbers'>#{part['title']}</a>"
+              "<a href='#{absolute_url(part['url'])}' class='page-numbers'>#{part['title']}</a>\n"
             elsif part['hellip_break']
-              "<span class='page-numbers'>#{part['title']}</span>"
+              "<span class='page-numbers'>#{part['title']}</span>\n"
             else
-              "<span class='page-numbers current'>#{part['title']}</span>"
+              "<span class='page-numbers current'>#{part['title']}</span>\n"
             end)
           end
 
