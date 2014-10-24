@@ -87,7 +87,7 @@ module Locomotive
           #end
 
           
-          selected = @current_page.slug =~ /^#{page.slug}/ ? ' #{@options[:active_class]}' : ''
+          selected = @current_page.slug =~ /^#{page.slug}/ ? @options[:active_class] : ''
 
           icon = @options[:icon] ? '<span></span>' : ''
           label = %{#{icon if @options[:icon] != 'after' }#{page.title}#{icon if @options[:icon] == 'after' }}
