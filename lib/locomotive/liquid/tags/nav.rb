@@ -92,9 +92,9 @@ module Locomotive
             else
               if index == 0 || index == 2
                 output = '<div class="column">'
-                output << %{<h1>#{page.title}</a></h1>}
+                output << %{<h1 id="#{page.slug.dasherize}"><a href="/#{page.fullpath}" class="#{page.slug}">#{page.title}</h1>}
               else
-                output = %{<h1 id="#{page.slug.dasherize}"><a href="/#{page.fullpath}">#{page.title}</h1>}
+                output = %{<h1 id="#{page.slug.dasherize}"><a href="/#{page.fullpath}" class="#{page.slug}">#{page.title}</h1>}
               end
               if last 
                 output << '</div>'
