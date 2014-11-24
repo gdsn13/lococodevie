@@ -74,16 +74,14 @@ module Locomotive
         def render_entry_link(page, css, depth, index, last)
 
           if depth == 1
-            p "############################"
-            p last
-            p index
+            
             if page.children_with_minimal_attributes.reject {|c| !include_page?(c)}.size > 0
               if index == 0 || index == 2
                 p page.title
                 output = '<div class="column">'
                 output << %{<h1>#{page.title}</a></h1>}
               else
-                output = %{<h1>#{page.title}</a></h1>}
+                output = %{<h1>#{page.title}</h1>}
               end
               output << render_entry_children(page, depth.succ) if (depth.succ <= @options[:depth].to_i)
               if index == 1
@@ -92,9 +90,9 @@ module Locomotive
             else
               if index == 0 || index == 2
                 output = '<div class="column">'
-                output << %{<h1 id="#{page.slug.dasherize}"><a href="/#{page.fullpath}" class="#{page.slug}">#{page.title}</h1>}
+                output << %{<h1 id="#{page.slug.dasherize}"><a href="/#{page.fullpath}" class="#{page.slug}">#{page.title}</a></h1>}
               else
-                output = %{<h1 id="#{page.slug.dasherize}"><a href="/#{page.fullpath}" class="#{page.slug}">#{page.title}</h1>}
+                output = %{<h1 id="#{page.slug.dasherize}"><a href="/#{page.fullpath}" class="#{page.slug}">#{page.title}</a></h1>}
               end
               if last 
                 output << '</div>'
