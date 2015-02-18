@@ -48,7 +48,7 @@ fr:
           title: "Page non trouvée"
           body: "Contenu de la page d'erreur 404"
         other:
-          body: "{% extends 'parent' %}{% block seo %}<title>{{page.seo_title}}</title><meta name='keywords' content='{{page.meta_keywords}}'/><meta name='description' content='{{page.meta_description}}'/>{% endblock %}{% block content %}{% editable_long_text 'contenu', priority: 1%}{% endeditable_long_text %}{% endblock %}"
+          body: "{% extends parent %}\n\n{% block seo %}\n<title>{{page.seo_title}}</title>\n<meta name='keywords' content='{{page.meta_keywords}}'/>\n<meta name='description' content='{{page.meta_description}}'/>\n{% endblock %}\n\n{% block content %}\n<div class='section1'>\n<div class='container'>\n<div class='left_content'>\n<div class='inner'>\n<h1>\n{{page.title}}\n</h1>\n{% editable_long_text 'contenu', priority: 1%}{% endeditable_long_text %}\n</div>\n</div>\n<div class='right_side'>\n{% editable_long_text 'side', priority: 1%}{% endeditable_long_text %}\n</div>\n</div>\n</div>\n{% endblock %}"
 
   mongoid:
     attributes:
