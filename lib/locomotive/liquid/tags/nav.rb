@@ -32,7 +32,6 @@ module Locomotive
 
         def render(context)
           children_output = []
-          index = 0
 
           entries = fetch_entries(context)
 
@@ -41,14 +40,14 @@ module Locomotive
             css << 'first' if index == 0
             css << 'last' if index == entries.size - 1
 
-            children_output << render_entry_link(p, css.join(' '), 1, index, entries.last == p)
+            children_output << render_entry_link(p, css.join(' '), 1)
           end
 
           output = children_output.join("\n")
 
-          #if @options[:no_wrapper] != 'true'
-          #  output = %{<ul id="#{@options[:id]}">\n#{output}</ul>}
-          #end
+          if @options[:no_wrapper] != 'true'
+            output = %{<ul id="#{@options[:id]}">\n#{output}</ul>}
+          end
 
           output
         end
@@ -71,50 +70,16 @@ module Locomotive
         end
 
         # Returns a list element, a link to the page and its children
-        def render_entry_link(page, css, depth, index, last)
+        def render_entry_link(page, css, depth)
+          selected = @current_page.fullpath =~ /^#{page.fullpath}/ ? ' on' : ''
 
-          if depth == 1
-            
-            if page.children_with_minimal_attributes.reject {|c| !include_page?(c)}.size > 0
-              if index == 0 || index == 2
-                p page.title
-                output = '<div class="column">'
-                output << %{<h1>#{page.title}</a></h1>}
-              else
-                output = %{<h1>#{page.title}</h1>}
-              end
-              output << render_entry_children(page, depth.succ) if (depth.succ <= @options[:depth].to_i)
-              if index == 1
-                output << '</div>'
-              end
-            else
-              if index == 0 || index == 2
-                output = '<div class="column">'
-                output << %{<h1 id="#{page.slug.dasherize}"><a href="/#{page.fullpath}" class="#{page.slug}">#{page.title}</a></h1>}
-              else
-                output = %{<h1 id="#{page.slug.dasherize}"><a href="/#{page.fullpath}" class="#{page.slug}">#{page.title}</a></h1>}
-              end
-              if last 
-                output << '</div>'
-              end
-            end
-          else
-            selected = @current_page.slug =~ /^#{page.slug}/ ? 'current' : ''
-            output  = %{<li class="link #{selected} #{css}">}
-            output << %{<a href="/#{page.fullpath}">#{page.title}</a>}
-            output << %{</li>}
-          end
+          icon = @options[:icon] ? '<span></span>' : ''
+          label = %{#{icon if @options[:icon] != 'after' }#{page.title}#{icon if @options[:icon] == 'after' }}
 
-          
-          #selected = @current_page.slug =~ /^#{page.slug}/ ? @options[:active_class] : ''
-
-          #icon = @options[:icon] ? '<span></span>' : ''
-          #label = %{#{icon if @options[:icon] != 'after' }#{page.title}#{icon if @options[:icon] == 'after' }}
-
-          #output  = %{<li id="#{page.slug.dasherize}-link" class="link #{selected} #{css}">}
-          #output << %{<a href="/#{page.fullpath}" data-description="#{page.menu_subtitle}">#{label}</a>}
-          #output << render_entry_children(page, depth.succ) if (depth.succ <= @options[:depth].to_i)
-          #output << %{</li>}
+          output  = %{<li id="#{page.slug.dasherize}-link" class="link#{selected} #{css}">}
+          output << %{<a href="/#{page.fullpath}">#{label}</a>}
+          output << render_entry_children(page, depth.succ) if (depth.succ <= @options[:depth].to_i)
+          output << %{</li>}
 
           output.strip
         end
@@ -125,13 +90,13 @@ module Locomotive
 
           children = page.children_with_minimal_attributes.reject { |c| !include_page?(c) }
           if children.present?
-            output = %{<ul id="#{@options[:id]}-#{page.slug.dasherize}" class="sub_menu">}
+            output = %{<ul id="#{@options[:id]}-#{page.slug.dasherize}">}
             children.each do |c, page|
               css = []
               css << 'first' if children.first == c
               css << 'last'  if children.last  == c
 
-              output << render_entry_link(c, css.join(' '), depth, 0, false)
+              output << render_entry_link(c, css.join(' '), depth)
             end
             output << %{</ul>}
           end
