@@ -21,6 +21,14 @@ module Locomotive
           (index.to_i + 1) % modulo == 0 ? word : ''
         end
 
+        def split(input, pattern)
+          input.to_s.split(pattern)
+        end
+
+        def xletters(input, number)
+          input.to_s[0, number]
+        end
+
       end
 
       ::Liquid::Template.register_filter(Misc)
