@@ -77,7 +77,7 @@ module Locomotive
           label = %{#{icon if @options[:icon] != 'after' }#{page.title}#{icon if @options[:icon] == 'after' }}
 
           output  = %{<li id="#{page.slug.dasherize}-link" class="link#{selected} #{css}">}
-          if depth > 2
+          if depth > 1
             output << %{<a href="/#{page.fullpath}">#{label}</a>}
           else
             output << %{#{label}}
