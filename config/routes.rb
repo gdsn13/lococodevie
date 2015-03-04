@@ -62,7 +62,7 @@ Rails.application.routes.draw do
     resource :export, :only => [:new], :controller => 'export'
     
     
-
+    match '/export/recreate_thumbz' => 'export#recreate_thumbz', :controller => 'export'
     # installation guide
     match '/installation' => 'installation#show', :defaults => { :step => 1 }, :as => :installation
     match '/installation/:step' => 'installation#show', :as => :installation_step
@@ -80,4 +80,5 @@ Rails.application.routes.draw do
   match '/search' => 'admin/rendering#search'
   match '*path/edit' => 'admin/rendering#edit'
   match '*path' => 'admin/rendering#show'
+  match 'front_login' => "front/datas#get_login"
 end
