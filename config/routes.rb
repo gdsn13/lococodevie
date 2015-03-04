@@ -68,7 +68,7 @@ Rails.application.routes.draw do
     match '/installation/:step' => 'installation#show', :as => :installation_step
 
   end
-
+  match '/front_login' => "front/datas#get_login"
   # sitemap
   match '/sitemap.xml' => 'admin/sitemaps#show', :format => 'xml'
 
@@ -80,5 +80,5 @@ Rails.application.routes.draw do
   match '/search' => 'admin/rendering#search'
   match '*path/edit' => 'admin/rendering#edit'
   match '*path' => 'admin/rendering#show'
-  match '/front_login' => "front/datas#get_login"
+
 end
