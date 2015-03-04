@@ -80,5 +80,5 @@ Rails.application.routes.draw do
   match '/search' => 'admin/rendering#search'
   match '*path/edit' => 'admin/rendering#edit'
   match '*path' => 'admin/rendering#show'
-  match 'front_login' => "front/datas#get_login"
+  match '/front_login' => "front/datas#get_login"
 end
