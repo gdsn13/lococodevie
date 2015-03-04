@@ -7,13 +7,7 @@ class Front::DatasController < ApplicationController
     user = params[:login_field]
     psswd = params[:psswd_field]
 
-    p '3333333'
-    p '3333333'
-    p '3333333'
-    p '3333333'
-    p params
-
-    if user == "presse" && psswd == "saisonlacriee"
+    if user == "olea" && psswd == "private2015"
       res = {
         :user_name => 'ok'
       }
