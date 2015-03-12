@@ -7,7 +7,13 @@ class Front::DatasController < ApplicationController
     user = params[:login_field]
     psswd = params[:psswd_field]
 
-    if user == "olea" && psswd == "private2015"
+    user_list = { "staff_oleamedical" => "oleamedical_ovtd2015", 
+                  "distributors_oleamedical" => "distrib_olea2015", 
+                  "customer_oleamedical" => "custom_olea2015", 
+                  "documentation_oleamedical" => "info_olea2015"
+                }
+
+    if user_list[user] == psswd
       res = {
         :user_name => 'ok'
       }
