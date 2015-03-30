@@ -17,8 +17,13 @@ module Locomotive
           result
         end
 
-        def modulo(word, index, modulo)
+        # was called modulo at first
+        def str_modulo(word, index, modulo)
           (index.to_i + 1) % modulo == 0 ? word : ''
+        end
+
+        def modulo(index, modulo)
+          (index.to_i) % modulo
         end
 
         def split(input, pattern)
