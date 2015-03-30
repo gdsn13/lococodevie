@@ -23,7 +23,7 @@ module Locomotive
         end
 
         def modulo(index, modulo)
-          input.to_i % modulo.to_i
+          index.to_i % modulo.to_i
         end
 
         def split(input, pattern)
