@@ -68,7 +68,7 @@ var TinyMceDefaultSettings = {
   },
 	paste_text_sticky: true,
 	paste_text_sticky_default: true,
-  forced_root_block : '',
+  //forced_root_block : '',
 	setup : function(ed) 
 	        {    ed.onInit.add(function(ed)
 	            {    ed.pasteAsPlainText = true;
