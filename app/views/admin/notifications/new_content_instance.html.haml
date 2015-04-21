@@ -16,6 +16,7 @@
       &nbsp;-&nbsp;
       %i
         - if field.file?
-          = link_to File.basename(@content.send(field._name).url), @content.send(field._name).url
+          - if @content.send(field._name).url != nil
+            = link_to File.basename(@content.send(field._name).url), @content.send(field._name).url
         - else
           = @content.send(field._alias)
