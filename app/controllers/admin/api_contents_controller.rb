@@ -16,7 +16,7 @@ module Admin
 
       #anti-spam filter, specific is hidden, so only robbots can fill it, and check if there is more fields sent!
       if params[:content][:specific] == "" && 
-         params[:content].size == @content_type.content_custom_fields.size + 2 && 
+         #params[:content].size == @content_type.content_custom_fields.size + 2 && 
          params[:content][:fixed] == "666"
 
         respond_to do |format|
