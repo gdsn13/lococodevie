@@ -6,7 +6,7 @@ module Admin
     def new_content_instance(account, content)
       @account, @content = account, content
 
-      if @content.send('titre') != '' :from => @content.send('email')
+      #if @content.send('titre') != '' :from => @content.send('email')
 
       subject = @content.send('object'), :type => content.content_type.name, :locale => account.locale)
 
