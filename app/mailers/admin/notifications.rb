@@ -6,7 +6,7 @@ module Admin
     def new_content_instance(account, content)
       @account, @content = account, content
 
-      subject = t('admin.notifications.new_content_instance.subject', :type => content.content_type.name, :locale => account.locale)
+      subject = subject = @content.send('titre')
 
       mail :subject => subject, :to => account.email
     end
