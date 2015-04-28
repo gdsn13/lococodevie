@@ -1,4 +1,5 @@
 %p= t('.title', :name => @account.name, :date => I18n.l(Time.now), :locale => @account.locale)
+%p= link_to "Voir dans le back office", "http://www.olea-medical.com/admin/content_types/#{@content.content_type.slug}/contents/#{@content._id}/edit"
 
 %hr
 
@@ -17,6 +18,6 @@
       %i
         - if field.file?
           - if @content.send(field._name).url != nil
-            = link_to File.basename(@content.send(field._name).url), @content.send(field._name).url
+            = link_to "http://www.olea-medical.com#{@content.send(field._name).url}", @content.send(field._name).url
         - else
           = @content.send(field._alias)

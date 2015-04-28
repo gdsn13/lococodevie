@@ -6,7 +6,7 @@ module Admin
     def new_content_instance(account, content)
       @account, @content = account, content
 
-      subject = subject = @content.send('titre')
+      subject = @content.send('object')
 
       mail :subject => subject, :to => account.email
     end
