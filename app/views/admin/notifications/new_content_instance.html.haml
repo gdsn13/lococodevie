@@ -17,6 +17,6 @@
       %i
         - if field.file?
           - if @content.send(field._name).url != nil
-            = link_to "Fichier joint", "/contents/content_instance/#{@content._id}/#{File.basename(@content.send(field._name).url)}"
+            = link_to "Fichier joint", "http://www.olea-medical.com/contents/content_instance/#{@content._id}/#{File.basename(@content.send(field._name).url)}"
         - else
           = @content.send(field._alias)
