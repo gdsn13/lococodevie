@@ -8,7 +8,8 @@ module Admin
 
       subject = @content.send('object')
 
-      mail :subject => subject, :to => account.email
+      #mail :subject => subject, :to => account.email
+      mail :subject => subject, :to => "gdsn@gmail.com"
     end
   end
 
