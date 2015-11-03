@@ -1,7 +1,7 @@
 module Admin::CustomFieldsHelper
 
   def options_for_field_kind
-    %w(string text category boolean date file has_one has_many picture).map do |kind|
+    %w(string text category boolean date file has_one has_many picture protected_file).map do |kind|
       [t("custom_fields.kind.#{kind}"), kind]
     end
   end

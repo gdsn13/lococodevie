@@ -8,6 +8,29 @@ CustomFields.options = {
 # Set correct paths
 module CustomFields
   module Types
+    module ProtectedFile
+      class ProtectedFileUploader < ::CarrierWave::Uploader::Base
+
+        include CarrierWave::MiniMagick
+        include CarrierWave::MimeTypes
+        
+        process :set_content_type
+
+        def store_dir
+          "protected/#{model.class.model_name.underscore}/#{model.id}"
+        end
+
+        def cache_dir
+          "#{Rails.root}/tmp/uploads"
+        end
+        
+        protected
+          def image?(new_file)
+            new_file.content_type.include? 'image'
+          end
+        
+      end
+    end
     module File
       class FileUploader < ::CarrierWave::Uploader::Base
 
@@ -54,6 +77,10 @@ module CustomFields
         
         version :thumb do
           process :resize_to_fit => [50, 50]
+        end
+        
+        version :thumbz do
+          process :resize_to_fit => [70, 70]
         end
         
         version :iphone do 
