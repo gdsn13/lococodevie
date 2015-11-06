@@ -13,7 +13,6 @@ module Admin
 
     def create
       @content = @content_type.contents.build(params[:content])
-
       #anti-spam filter, specific is hidden, so only robbots can fill it, and check if there is more fields sent!
       if params[:content][:specific] == "" && 
          #params[:content].size == @content_type.content_custom_fields.size + 2 && 
@@ -21,13 +20,13 @@ module Admin
 
         respond_to do |format|
           if @content.save
-            format.json { render :json => { :content => @content } }
+            #format.json { render :json => { :content => @content } }
             format.html do
               flash[@content_type.slug.singularize] = @content.aliased_attributes
               redirect_to params[:success_callback]
             end
           else
-            format.json { render :json => { :content => @content, :errors => @content.errors } }
+            #format.json { render :json => { :content => @content, :errors => @content.errors } }
             format.html do
               flash[@content_type.slug.singularize] = @content.aliased_attributes
               flash['errors'] = @content.errors_to_hash
@@ -37,11 +36,11 @@ module Admin
         end
       else
         respond_to do |format|
-          format.json { render :json => { :content => "ok bot" } }
-          format.html do
-            redirect_to params[:error_callback]
-          end
-        end
+           format.json { render :json => { :content => "ok bot" } }
+           format.html do
+             redirect_to params[:error_callback]
+           end
+         end
       end
     end
 
