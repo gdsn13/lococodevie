@@ -20,13 +20,13 @@ module Admin
 
         respond_to do |format|
           if @content.save
-            #format.json { render :json => { :content => @content } }
+            format.json { render :json => { :content => @content } }
             format.html do
               flash[@content_type.slug.singularize] = @content.aliased_attributes
               redirect_to params[:success_callback]
             end
           else
-            #format.json { render :json => { :content => @content, :errors => @content.errors } }
+            format.json { render :json => { :content => @content, :errors => @content.errors } }
             format.html do
               flash[@content_type.slug.singularize] = @content.aliased_attributes
               flash['errors'] = @content.errors_to_hash
