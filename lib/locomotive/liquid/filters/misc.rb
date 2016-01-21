@@ -34,6 +34,10 @@ module Locomotive
           input.to_s[0, number]
         end
 
+        def xLastLetters(input, number)
+          input.to_s.split(//).last(number).join("").to_s
+        end
+
       end
 
       ::Liquid::Template.register_filter(Misc)
