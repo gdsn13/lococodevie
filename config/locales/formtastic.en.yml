@@ -98,3 +98,4 @@ en:
         api_accounts: "A notification email will be sent to each of the accounts listed above when a new instance is created"
         searchable: "Search engine will include this content type in his work"
         associable: "Possible to associate contents to specifics pages"
+        sendable: "Send a mail to the man who fill the form (email field must be present"

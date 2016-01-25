@@ -52,6 +52,12 @@ module Locomotive
               end
             end
           end
+          ####ADDED FOR LOGIN
+          if page.protected_page?
+            if session[:user] == "" || session[:user] == nil
+              page = current_site.pages.where(:fullpath => 'login').first
+            end
+          end
         end
 
         page || not_found_page

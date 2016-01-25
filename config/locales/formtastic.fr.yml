@@ -104,3 +104,4 @@ fr:
         api_accounts: "Un email de notification sera envoyé à chaque compte listé ci-dessus lors de la création d'une nouvelle instance"
         associable: "Possibilité d'associer certains item à des pages"
         searchable: "Le moteur de recherche incluera ce type de contenu dans son travail"
+        sendable: "Envoyer un mail de bonne reception à celui qui a rempli le form (un champ email est obligatoire)"

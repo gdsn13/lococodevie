@@ -21,6 +21,8 @@ class Page
   field :published, :type => Boolean, :default => false
   field :cache_strategy, :default => 'none'
   field :menu_subtitle
+  field :protected_page, :type => Boolean, :default => false
+
 
   ## associations ##
   referenced_in :site

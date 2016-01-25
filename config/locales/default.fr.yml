@@ -75,6 +75,7 @@ fr:
         api_enabled: Activation API
         associable: Associable
         searchable: Recherchable
+        sendable: Envoyable 
       asset:
         source: Fichier
       account:

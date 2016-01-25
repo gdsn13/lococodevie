@@ -54,7 +54,9 @@ fr:
         subject: "[%{type}] nouveau"
         title: "Bonjour %{name}, nous voulions vous faire savoir qu'une nouvelle instance a été créée le %{date}"
         type: "Modèle: %{type}"
-
+      new_mail_to_client:
+        subject: 'ACCUSÉ DE TRANSMISSION DE VOTRE CANDIDATURE'
+        mail: 'Votre candidature pour le concours Olea Innovators a bien été réceptionnée par Olea Medical.'
     sites_picker:
       new: + nouveau site
 

@@ -71,6 +71,7 @@ class ContentInstance
     self._parent = self._parent.reload
   end
 
+
   def to_liquid
     Locomotive::Liquid::Drops::Content.new(self)
   end
@@ -124,17 +125,24 @@ class ContentInstance
   end
 
   def send_notifications
+
     return unless self.content_type.api_enabled? && !self.content_type.api_accounts.blank?
 
     accounts = self.content_type.site.accounts.to_a
 
     self.content_type.api_accounts.each do |account_id|
+
       next if account_id.blank?
 
       account = accounts.detect { |a| a.id.to_s == account_id.to_s }
 
       Admin::Notifications.new_content_instance(account, self).deliver
+    end    
+    
+    if self.content_type.sendable
+      Admin::Notifications.new_mail_to_client(self).deliver
     end
+
   end
 
 end

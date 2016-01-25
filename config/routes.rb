@@ -71,6 +71,8 @@ Rails.application.routes.draw do
   match '/front_login' => "front/datas#get_login"
   # sitemap
   match '/sitemap.xml' => 'admin/sitemaps#show', :format => 'xml'
+  match '/user_sessions/create' => 'user_sessions#create'
+  match '/user_sessions/delete' => 'user_sessions#destroy'
 
   # robots.txt
   match '/robots.txt' => 'admin/robots#show', :format => 'txt'
