@@ -38,6 +38,10 @@ module Locomotive
           input.to_s.split(//).last(number).join("").to_s
         end
 
+        def kilo(input)
+          (input.to_i / 1000).to_s.split('.').first.to_s
+        end
+
       end
 
       ::Liquid::Template.register_filter(Misc)
